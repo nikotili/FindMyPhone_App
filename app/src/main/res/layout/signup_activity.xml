@@ -1,0 +1,313 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#ffffff"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <TextView
+                android:id="@+id/signUpHeaderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:fontFamily="@font/asap"
+                android:textSize="18dp"
+                android:text="@string/sign_up_header"/>
+        </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:background="#FFFFFF">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/firstNameInputLayout"
+                android:layout_width="match_parent"
+                android:theme="@style/text_input_style"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/firstNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:ems="10"
+                    android:hint="@string/first_name"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/lastNameInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/lastNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/last_name"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="textEmailAddress" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/password"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/dateOfBirthInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/dateOfBirthEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/date_of_birth"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="date" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/address1InputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address1EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/address_1"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/address2InputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address2EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/address_2"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/postalCodeInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/postalCodeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/postal_code"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:maxLength="5"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/countryInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/countryEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/country"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/cityInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:theme="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cityEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/city"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/mobilePhoneInputLayout"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorBlue"
+                android:theme="@style/text_input_style"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/mobilePhoneEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="@string/mobile_phone"
+                    android:backgroundTint="@color/colorBlue"
+                    android:fontFamily="@font/asap"
+                    android:textSize="15sp"
+                    android:inputType="phone" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/createAccountButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorBlue"
+
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/asap_medium"
+                    android:text="@string/create_account"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
