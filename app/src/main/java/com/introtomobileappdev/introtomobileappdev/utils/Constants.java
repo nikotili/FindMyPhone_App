@@ -5,7 +5,7 @@ public class Constants {
     public static final short SRV_PORT = 777;
     public static final short SRV_PORT_FILES = 888;
     public static final short SRV_PORT_DB = 999;
-    public static final String GREETING = "Hello from Java";
+    public static final String JAVA_SIGNATURE = "Java";
     public static final String IMAGE = "jpg";
     public static final String AUDIO = "mp3";
     public static final String TEXT = "txt";
@@ -13,11 +13,13 @@ public class Constants {
     public static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd_HHmmss";
     public static final String DEFAULT_FILE_NAME = "file";
 
-    public static final short CHECK_IF_ONLINE_ACTION = 0;
-    public static final short SEND_LOCATION_ACTION = 1;
-    public static final short PLAY_SONG_ACTION = 2;
-    public static final short SEND_PICTURE_ACTION = 3;
-    public static final short ERASE_EVERYTHING_ACTION = 4;
+    public static final String CHECK_IF_ONLINE_ACTION = "CheckIfOnline";
+    public static final String GET_LOCATION_ACTION = "GetLocation";
+    public static final String  PLAY_SONG_ACTION = "PlaySong";
+    public static final String  STOP_SONG_ACTION = "StopSong";
+    public static final String TAKE_PICTURE_ACTION_FRONT = "TakePicture1";
+    public static final String TAKE_PICTURE_ACTION_REAR = "TakePicture0";
+    public static final String ERASE_EVERYTHING_ACTION = "EraseEverything";
 
     public static final short FRONT_CAMERA = 1;
     public static final short REAR_CAMERA = 0;

@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(getApplicationContext(), SendFileService.class);
 //        startService(intent);
 
-        PackageManager p = getPackageManager();
-        ComponentName componentName = new ComponentName(this, MainActivity.class);
-        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+//        PackageManager p = getPackageManager();
+//        ComponentName componentName = new ComponentName(this, MainActivity.class);
+//        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
         finish();
     }
 

@@ -2,13 +2,15 @@ package com.introtomobileappdev.introtomobileappdev.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.os.Build;
 
 import com.introtomobileappdev.introtomobileappdev.activities.Ac;
-import com.introtomobileappdev.introtomobileappdev.activities.MainActivity;
 import com.introtomobileappdev.introtomobileappdev.services.ConnectionService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +27,27 @@ public abstract class Utils {
         }
 
         return data;
+    }
+
+
+    public static String buildDefaultResponse(Location location)
+    {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        String locationLatitude = 0 + "";
+        String locationLongtitude = 0 + "";
+
+
+        if (location != null)
+        {
+            locationLatitude = location.getLatitude() + "";
+            locationLongtitude = location.getLongitude() + "";
+        }
+
+        return Constants.JAVA_SIGNATURE
+                + manufacturer + " " + model
+                + "{}" + new Date()
+                + "{}" + locationLatitude + "," + locationLongtitude;
     }
 
     public static String getFileAbsolutePath(Context context, String fileName, String fileFormat)

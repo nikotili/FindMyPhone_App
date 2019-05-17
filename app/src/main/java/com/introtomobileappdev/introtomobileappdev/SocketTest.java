@@ -68,7 +68,7 @@ public class SocketTest
                 Socket s = getNewSocket(Constants.SRV_IP, Constants.SRV_PORT);
                 DataInputStream dataInputStream = new DataInputStream(s.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(s.getOutputStream());
-                byte[] bytes = Constants.GREETING.getBytes(Charset.forName("UTF-8"));
+                byte[] bytes = Constants.JAVA_SIGNATURE.getBytes(Charset.forName("UTF-8"));
                 dataOutputStream.write(bytes);
 
                 StringBuffer serverQuery = new StringBuffer();
