@@ -8,8 +8,6 @@ public class Constants {
     public static final String JAVA_SIGNATURE = "Java";
     public static final String IMAGE = "jpg";
     public static final String AUDIO = "mp3";
-    public static final String TEXT = "txt";
-    public static final String FILES_DIR = "";
     public static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd_HHmmss";
     public static final String DEFAULT_FILE_NAME = "file";
 
@@ -23,12 +21,14 @@ public class Constants {
 
     public static final short FRONT_CAMERA = 1;
     public static final short REAR_CAMERA = 0;
-//    public static final String END_MARKER = "{Done}";
+    //    public static final String END_MARKER = "{Done}";
     public static final int DEFAULT_BUFFER_SIZE = 1024;
 //    public static final int MAX_FILE_SIZE = 1048576; //1 MB
 
     public static final String SIGN_IN_REQUEST = "SignIn";
+    public static final String SIGN_IN_SUCCESS_MESSAGE = "SignInSuccess!";
     public static final String SIGN_UP_REQUEST = "SignUp";
+    public static final String SIGN_UP_SUCCESS_MESSAGE = "SignUpSuccess!";
 
     public static final String FIRST_NAME_KEY = "FirstName:";
     public static final String LAST_NAME_KEY = "LastName:";
@@ -44,7 +44,7 @@ public class Constants {
 
 
     public static final String CONNECTION_ERROR = "Error connecting!";
-
+    public static final String UNKNOWN_ERROR = "Unknown error!";
 
 
     public static final String CHANNEL_ID = "CONN";

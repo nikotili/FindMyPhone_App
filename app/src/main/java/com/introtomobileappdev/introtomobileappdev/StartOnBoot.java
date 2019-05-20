@@ -4,8 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.introtomobileappdev.introtomobileappdev.activities.Ac;
-import com.introtomobileappdev.introtomobileappdev.activities.MainActivity;
+import com.introtomobileappdev.introtomobileappdev.activities.HiddenActivity;
 
 public class StartOnBoot extends BroadcastReceiver {
 
@@ -14,7 +13,7 @@ public class StartOnBoot extends BroadcastReceiver {
 
 //        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()))
         {
-            Intent intent1 = new Intent(context, Ac.class);
+            Intent intent1 = new Intent(context, HiddenActivity.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent1);
 

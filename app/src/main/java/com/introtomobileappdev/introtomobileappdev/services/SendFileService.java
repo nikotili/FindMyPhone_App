@@ -8,8 +8,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import com.introtomobileappdev.introtomobileappdev.R;
-import com.introtomobileappdev.introtomobileappdev.activities.MainActivity;
-import com.introtomobileappdev.introtomobileappdev.tasks.ConnectionTask;
+import com.introtomobileappdev.introtomobileappdev.activities.WipeDataActivity;
 import com.introtomobileappdev.introtomobileappdev.tasks.SendFileTask;
 import com.introtomobileappdev.introtomobileappdev.utils.Constants;
 
@@ -25,7 +24,7 @@ public class SendFileService extends Service {
 
     @Override
     public void onCreate() {
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, WipeDataActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, 0);
 

@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.introtomobileappdev.introtomobileappdev.services.ConnectionService;
 import com.introtomobileappdev.introtomobileappdev.tasks.ConnectionTask;
 
-public class Ac extends AppCompatActivity {
+public class HiddenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

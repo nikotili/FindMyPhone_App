@@ -5,6 +5,7 @@
     <string name="log_in">Log In</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="address_1">Address line 1</string>
     <string name="address_2">Address line 2</string>
@@ -23,12 +24,14 @@
     <string name="password_error">
         8 Characters or longer.\nAt Least one number one uppercase letter and one symbol (like !@#$%^).
     </string>
+    <string name="repeat_password_error">Passwords do not match.</string>
     <string name="date_of_birth_error">Select your date of birth.</string>
     <string name="address_line1_error">Enter your address line 1.</string>
     <string name="postal_code_error">Enter your postal code.</string>
     <string name="country_error">Enter your country.</string>
     <string name="city_error">Enter your city.</string>
     <string name="mobile_phone_error">Enter your phone number.</string>
+    <string name="wrong_credentials">Wrong email or password!</string>
 
 
 </resources>

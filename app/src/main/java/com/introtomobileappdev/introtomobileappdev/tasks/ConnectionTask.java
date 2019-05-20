@@ -1,23 +1,17 @@
 package com.introtomobileappdev.introtomobileappdev.tasks;
 
-import android.Manifest;
+import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.location.Location;
-import android.location.LocationManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.introtomobileappdev.introtomobileappdev.activities.MainActivity;
 import com.introtomobileappdev.introtomobileappdev.utils.Constants;
 import com.introtomobileappdev.introtomobileappdev.R;
 import com.introtomobileappdev.introtomobileappdev.utils.Utils;
@@ -28,18 +22,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.Socket;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static android.content.Context.LOCATION_SERVICE;
+import static android.content.Context.DEVICE_POLICY_SERVICE;
+
 
 public class ConnectionTask extends AsyncTask<Context, Void, Void>
 {
-
     private MediaPlayer mediaPlayer;
 
     private void playSongAction(Context context)
     {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(
+                AudioManager.STREAM_MUSIC,
+                audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
+                0);
         mediaPlayer = MediaPlayer.create(context, R.raw.alert);
         mediaPlayer.start();
     }
@@ -49,53 +47,6 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
         if (mediaPlayer != null)
             if (mediaPlayer.isPlaying())
                 mediaPlayer.stop();
-    }
-
-
-    private Location getLastKnownLocation(final Context context) {
-        LocationManager mLocationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-        List<String> providers = mLocationManager.getProviders(true);
-        Location bestLocation = null;
-        context.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, 1,1);
-        for (String provider : providers) {
-            Location l = mLocationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
-            }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-                bestLocation = l;
-            }
-        }
-        return bestLocation;
-    }
-
-    private Location getLocation(final Context context)
-    {
-        try
-        {
-            LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            if (location == null)
-            {
-                throw new NullPointerException();
-            }
-
-            else
-            {
-                return location;
-            }
-
-        }
-
-        catch (SecurityException e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     private void takePhoto(final Context context, int cameraID)
@@ -217,6 +168,11 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
         }
     }
 
+    private void wipeData(Context context)
+    {
+        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context.getSystemService(DEVICE_POLICY_SERVICE);
+        devicePolicyManager.wipeData(1);
+    }
 
     private void listen(Context context)
     {
@@ -230,7 +186,7 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
                 DataInputStream dataInputStream = new DataInputStream(s.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(s.getOutputStream());
 
-                dataOutputStream.write(Utils.buildDefaultResponse(getLastKnownLocation(context)).getBytes());
+                dataOutputStream.write(Utils.buildDefaultResponse(context).getBytes());
 //                dataOutputStream.write(Constants.JAVA_SIGNATURE.getBytes());
 //                dataOutputStream.flush();
 
@@ -247,16 +203,7 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
                         break;
 
                     case Constants.TAKE_PICTURE_ACTION_REAR:
-                        try {
-                            takePhoto(context, Constants.REAR_CAMERA);
-                            TimeUnit.SECONDS.sleep(2);
-                            sendTakenPhoto(context, Constants.SRV_IP, Constants.SRV_PORT_FILES);
-                            deleteTakenPhoto(context);
-                        }
-                        catch (Exception e)
-                        {
-                            e.printStackTrace();
-                        }
+                        takePictureAction(context, Constants.REAR_CAMERA);
                         break;
 
                     case Constants.PLAY_SONG_ACTION:
@@ -268,30 +215,35 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
                         break;
 
                     case Constants.ERASE_EVERYTHING_ACTION:
-                        //TO BE
-                        break;
-
-                    case Constants.CHECK_IF_ONLINE_ACTION:
-                        // TO BE
-
+                        wipeData(context);
                         break;
 
                     default: //NULL
 
                         break;
                 }
-
             }
 
             catch (Exception e)
             {
+                try
+                {
+                    TimeUnit.SECONDS.sleep(5);
+                }
+
+                catch (Exception e1)
+                {
+
+                }
                 e.printStackTrace();
             }
+
         }
     }
 
     private void takePictureAction(Context context, int camID) {
         try {
+            Utils.restartApp(context);
             takePhoto(context, camID);
             TimeUnit.SECONDS.sleep(2);
             sendTakenPhoto(context, Constants.SRV_IP, Constants.SRV_PORT_FILES);
